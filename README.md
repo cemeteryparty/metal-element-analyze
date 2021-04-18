@@ -10,9 +10,21 @@ We try to use simple CNN structure to complete this task.
 
 ## Note
 
-The model I design has 3 conv layers, 2 dense layers.
+### Data Augmentation
 
-The model is very depth because the dataset is small.
+The original dataset is too small, so I sampling in dataset, and do some proc to img (rotate or flip).
 
-I also notice that the way of dataset augmentation associated to the model.
+### Label's regularization
+
+Original value of label will cause gradient burst, so we need to regularize it.
+
+I regularize the label by dividing label with scale [100, 1000, 1000]
+
+Revise the effect of label's regularization:
+
+1. intro2dl_mid.py
+
+In this version I mutiply the regularization scale to the result.
+
+Though the result seems normal and some predictions close to true label, the loss is quite high.
 
