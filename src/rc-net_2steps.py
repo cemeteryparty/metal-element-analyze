@@ -70,45 +70,6 @@ y = y.drop(columns = "file name").values
 
 print(x.shape, y.shape)
 
-""" Data Augmentation: Double the dataset size, and do some proc to img """ 
-x_set = x
-y_set = y / [100.0, 1000.0, 1000.0] # regularization to label
-x_train, y_train = x_set, y_set
-
-# 90 degree
-x_tmp, x_part, y_tmp, y_part = train_test_split(x_set, y_set, test_size = 0.15)
-for i in range(x_part.shape[0]):
-	x_part[i] = np.rot90(x_part[i], k = 1)
-x_train = np.append(x_train, x_part, axis = 0)
-y_train = np.append(y_train, y_part, axis = 0)
-# 180 degree
-x_tmp, x_part, y_tmp, y_part = train_test_split(x_tmp, y_tmp, test_size = 0.15)
-for i in range(x_part.shape[0]):
-	x_part[i] = np.rot90(x_part[i], k = 2)
-x_train = np.append(x_train, x_part, axis = 0)
-y_train = np.append(y_train, y_part, axis = 0)
-# 270 degree
-x_tmp, x_part, y_tmp, y_part = train_test_split(x_tmp, y_tmp, test_size = 0.15)
-for i in range(x_part.shape[0]):
-	x_part[i] = np.rot90(x_part[i], k = 3)
-x_train = np.append(x_train, x_part, axis = 0)
-y_train = np.append(y_train, y_part, axis = 0)
-# lr flip
-x_tmp, x_part, y_tmp, y_part = train_test_split(x_tmp, y_tmp, test_size = 0.15)
-for i in range(x_part.shape[0]):
-	x_part[i] = np.flip(x_part[i], axis = 1)
-x_train = np.append(x_train, x_part, axis = 0)
-y_train = np.append(y_train, y_part, axis = 0)
-# up flip
-x_tmp, x_part, y_tmp, y_part = train_test_split(x_tmp, y_tmp, test_size = 0.15)
-for i in range(x_part.shape[0]):
-	x_part[i] = np.flip(x_part[i], axis = 0)
-x_train = np.append(x_train, x_part, axis = 0)
-y_train = np.append(y_train, y_part, axis = 0)
-x_train = np.append(x_train, x_tmp, axis = 0)
-y_train = np.append(y_train, y_tmp, axis = 0)
-print(x_train.shape, y_train.shape)
-
 """ Data Augmentation: sampling in dataset, and do some proc to img """ 
 x_set = x
 y_set = y / [100.0, 1000.0, 1000.0] # regularization to label

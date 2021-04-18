@@ -8,6 +8,8 @@ For each picture, we need to analyze the copper content(%), gold and silver cont
 
 We try to use simple CNN structure to complete this task.
 
+[Dataset](https://drive.google.com/drive/folders/1-QP5kCqs1G5M1AmaTaw0oPnH4mzZa-8m)
+
 ## Note
 
 ### Data Augmentation
@@ -22,15 +24,15 @@ We regularize the label by dividing label with scale [100, 1000, 1000]
 
 Revise the effect of label's regularization:
 
-1. rc-net_mirror-scale.py
+(1) rc-net_mirror-scale.py
 
-In this version we mutiply the regularization scale to the the `frond model (fit and train on regularized label)'s` result.
+In this version we mutiply the regularization scale to the the `front model (fit and train on regularized label)'s` result.
 
 Though the result seems normal and some predictions close to true label, the acc is quite low.
 
-2. rc-net_2steps.py
+(2) rc-net_2steps.py
 
-In this version we add 2 dense layers after the `frond model` and fit it to true data.
+In this version we add 2 dense layers after the `front model` and fit it to true data.
 
 2 dense layers: 2 dense layers perform well than 1 dense layer, and 3 dense layers will result in overfitting to some specific data.
 
